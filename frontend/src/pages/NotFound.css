@@ -1,0 +1,28 @@
+.not-found {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.not-found h1 {
+  font-size: 6rem;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.not-found h2 {
+  font-size: 2rem;
+  color: var(--dark-gray);
+  margin: 10px 0 20px;
+}
+
+.not-found p {
+  font-size: 1.2rem;
+  color: var(--dark-gray);
+  margin-bottom: 30px;
+}
+
+.not-found .btn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+}
