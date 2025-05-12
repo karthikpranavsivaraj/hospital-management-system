@@ -1,74 +1,234 @@
 .header {
-  background-color: var(--primary-color);
-  color: var(--white);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #333;
   padding: 15px 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.header.scrolled {
+  padding: 10px 0;
+  background-color: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .logo {
   text-decoration: none;
-  color: var(--white);
+  color: #333;
 }
 
-.logo h1 {
-  margin: 0;
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1a73e8;
+  letter-spacing: 1px;
+}
+
+.logo-icon {
   font-size: 1.5rem;
+  color: #ff5252;
+  margin: 0 2px;
+  font-weight: bold;
+}
+
+.logo-hospitals {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #333;
+  margin-left: 5px;
 }
 
 .nav-links {
   display: flex;
+  align-items: center;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .nav-links li {
-  margin-left: 20px;
+  margin-left: 30px;
 }
 
 .nav-links a {
-  color: var(--white);
+  color: #555;
   text-decoration: none;
   font-weight: 500;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #1a73e8;
+  transition: width 0.3s ease;
 }
 
 .nav-links a:hover {
-  opacity: 0.8;
+  color: #1a73e8;
 }
 
-.btn-logout {
-  background: none;
-  border: 1px solid var(--white);
-  color: var(--white);
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 500;
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.dashboard-link {
+  color: #1a73e8 !important;
+  font-weight: 600 !important;
+}
+
+.btn-login, .btn-register {
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-weight: 600;
   transition: all 0.3s ease;
 }
 
-.btn-logout:hover {
-  background-color: var(--white);
-  color: var(--primary-color);
+.btn-login {
+  color: #1a73e8 !important;
+  border: 1px solid #1a73e8;
 }
 
-@media (max-width: 768px) {
-  .header-container {
-    flex-direction: column;
+.btn-login:hover {
+  background-color: rgba(26, 115, 232, 0.1);
+}
+
+.btn-login::after {
+  display: none !important;
+}
+
+.btn-register {
+  background-color: #ff5252;
+  color: white !important;
+  box-shadow: 0 4px 10px rgba(255, 82, 82, 0.3);
+}
+
+.btn-register:hover {
+  background-color: #ff1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(255, 82, 82, 0.4);
+}
+
+.btn-register::after {
+  display: none !important;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+}
+
+.user-name {
+  margin-right: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+.btn-logout {
+  background-color: #ff5252;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.btn-logout:hover {
+  background-color: #ff1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 82, 82, 0.3);
+}
+
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+}
+
+.mobile-menu-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: #333;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 992px) {
+  .mobile-menu-toggle {
+    display: flex;
+  }
+  
+  .nav {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-150%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+  }
+  
+  .nav.mobile-open {
+    transform: translateY(0);
   }
   
   .nav-links {
-    margin-top: 15px;
+    flex-direction: column;
+    align-items: flex-start;
   }
   
   .nav-links li {
-    margin: 0 10px;
+    margin: 15px 0;
+    width: 100%;
+  }
+  
+  .user-profile {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .user-name {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  
+  .btn-login, .btn-register, .btn-logout {
+    width: 100%;
+    text-align: center;
   }
 }
