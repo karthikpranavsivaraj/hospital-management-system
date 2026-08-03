@@ -60,12 +60,6 @@ const PatientDashboard = ({ user }) => {
 
   loadData();
 }, [user._id]);
-//////////////////////////////////////////////////////////////////////////////      
-      setPatientProfile(enhancedProfile);
-    } catch (error) {
-      toast.error('Failed to fetch patient profile');
-    }
-  };
 
   // Generate mock reviews for demo purposes
   const generateMockReviews = (doctorId) => {
