@@ -31,7 +31,7 @@ const PatientDashboard = ({ user }) => {
     fetchDoctors();
     fetchAppointments();
     fetchPatientProfile();
-  }, []);
+  }, [fetchAppointments, fetchDoctors, fetchPatientProfile]);
 
   const fetchDoctors = async () => {
     try {
