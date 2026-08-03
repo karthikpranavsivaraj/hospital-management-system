@@ -61,13 +61,6 @@ useEffect(() => {
   loadData();
 }, [user._id]);
 
-////////////////////////////////////////////////////////////////////////////////////////////      
-      setDoctorProfile(enhancedProfile);
-    } catch (error) {
-      toast.error('Failed to fetch doctor profile');
-    }
-  };
-
   const handleAcceptAppointment = async (appointmentId) => {
     try {
       await acceptAppointment(user._id, appointmentId);
