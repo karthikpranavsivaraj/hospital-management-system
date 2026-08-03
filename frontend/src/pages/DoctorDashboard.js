@@ -32,35 +32,36 @@ const DoctorDashboard = ({ user }) => {
     }
   ]);
 
-  useEffect(() => {
-    fetchAppointments();
-    fetchDoctorProfile();
-}, [fetchAppointments, fetchDoctorProfile]);
-
-  const fetchAppointments = async () => {
+useEffect(() => {
+  const loadData = async () => {
     try {
-      const data = await getDoctorAppointments(user._id);
-      setAppointments(data);
-      setLoading(false);
+      const appointmentsData = await getDoctorAppointments(user._id);
+      setAppointments(appointmentsData);
+
+      const profileData = await getDoctorProfile(user._id);
+
+      const enhancedProfile = {
+        ...profileData,
+        phone: profileData.phone || "+1 (555) 123-4567",
+        address: profileData.address || "123 Medical Center Dr, Healthcare City",
+        education: profileData.education || "MD from Medical University",
+        bio:
+          profileData.bio ||
+          `Experienced healthcare professional dedicated to providing exceptional patient care. Specializing in ${profileData.specialization} with ${profileData.experience} years of experience.`,
+      };
+
+      setDoctorProfile(enhancedProfile);
     } catch (error) {
-      toast.error('Failed to fetch appointments');
+      toast.error("Failed to load dashboard");
+    } finally {
       setLoading(false);
     }
   };
 
-  const fetchDoctorProfile = async () => {
-    try {
-      const data = await getDoctorProfile(user._id);
-      
-      // Merge with additional mock data for demo purposes
-      const enhancedProfile = {
-        ...data,
-        phone: data.phone || "+1 (555) 123-4567",
-        address: data.address || "123 Medical Center Dr, Healthcare City",
-        education: data.education || "MD from Medical University",
-        bio: data.bio || "Experienced healthcare professional dedicated to providing exceptional patient care. Specializing in " + data.specialization + " with " + data.experience + " years of experience in diagnosing and treating a wide range of conditions."
-      };
-      
+  loadData();
+}, [user._id]);
+
+////////////////////////////////////////////////////////////////////////////////////////////      
       setDoctorProfile(enhancedProfile);
     } catch (error) {
       toast.error('Failed to fetch doctor profile');
