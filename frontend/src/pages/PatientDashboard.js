@@ -28,51 +28,39 @@ const PatientDashboard = ({ user }) => {
   });
 
   useEffect(() => {
-    fetchDoctors();
-    fetchAppointments();
-    fetchPatientProfile();
-  }, [fetchAppointments, fetchDoctors, fetchPatientProfile]);
-
-  const fetchDoctors = async () => {
+  const loadData = async () => {
     try {
-      const data = await getAllDoctors();
-      
-      // Add mock reviews for demo purposes
-      const enhancedDoctors = data.map(doctor => ({
+      const doctorsData = await getAllDoctors();
+
+      const enhancedDoctors = doctorsData.map((doctor) => ({
         ...doctor,
-        reviews: generateMockReviews(doctor._id)
+        reviews: generateMockReviews(doctor._id),
       }));
-      
+
       setDoctors(enhancedDoctors);
+
+      const appointmentsData = await getPatientAppointments(user._id);
+      setAppointments(appointmentsData);
+
+      const profileData = await getPatientProfile(user._id);
+
+      setPatientProfile({
+        ...profileData,
+        phone: profileData.phone || "+1 (555) 987-6543",
+        address: profileData.address || "456 Patient Ave, Healthcare City",
+        bloodGroup: profileData.bloodGroup || "O+",
+        allergies: profileData.allergies || "None",
+      });
     } catch (error) {
-      toast.error('Failed to fetch doctors');
+      toast.error("Failed to load dashboard");
+    } finally {
+      setLoading(false);
     }
   };
 
-  const fetchAppointments = async () => {
-    try {
-      const data = await getPatientAppointments(user._id);
-      setAppointments(data);
-      setLoading(false);
-    } catch (error) {
-      toast.error('Failed to fetch appointments');
-      setLoading(false);
-    }
-  };
-
-  const fetchPatientProfile = async () => {
-    try {
-      const data = await getPatientProfile(user._id);
-      
-      // Merge with additional mock data for demo purposes
-      const enhancedProfile = {
-        ...data,
-        phone: data.phone || "+1 (555) 987-6543",
-        address: data.address || "456 Patient Ave, Healthcare City",
-        bloodGroup: data.bloodGroup || "O+",
-        allergies: data.allergies || "None"
-      };
-      
+  loadData();
+}, [user._id]);
+//////////////////////////////////////////////////////////////////////////////      
       setPatientProfile(enhancedProfile);
     } catch (error) {
       toast.error('Failed to fetch patient profile');
