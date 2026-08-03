@@ -19,19 +19,22 @@ const Footer = () => {
                 Our mission is to improve the health and wellbeing of the communities we serve.
               </p>
               <div className="social-links">
-                <a href="#" className="social-link">
-                  <i className="fab fa-facebook-f">FB</i>
-                </a>
-                <a href="#" className="social-link">
-                  <i className="fab fa-twitter">TW</i>
-                </a>
-                <a href="#" className="social-link">
-                  <i className="fab fa-instagram">IG</i>
-                </a>
-                <a href="#" className="social-link">
-                  <i className="fab fa-linkedin-in">LI</i>
-                </a>
-              </div>
+  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-link">
+    <i className="fab fa-facebook-f">FB</i>
+  </a>
+
+  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-link">
+    <i className="fab fa-twitter">TW</i>
+  </a>
+
+  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link">
+    <i className="fab fa-instagram">IG</i>
+  </a>
+
+  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link">
+    <i className="fab fa-linkedin-in">LI</i>
+  </a>
+</div>
             </div>
             
             <div className="footer-links">
