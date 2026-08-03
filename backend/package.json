@@ -12,7 +12,7 @@
   "dotenv": "^16.4.7",
   "express": "^4.17.1",
   "mongoose": "^6.0.12"
-}
+},
   "devDependencies": {
     "nodemon": "^2.0.14"
   }
