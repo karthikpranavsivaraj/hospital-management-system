@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://hospital-management-system-tgmj.onrender.com';
+const API_URL = 'https://hospital-management-system-tgmj.onrender.com/api';
 
 // Auth Services
 export const registerDoctor = async (doctorData) => {
